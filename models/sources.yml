@@ -2,7 +2,8 @@ version: 2
 
 sources:
   - name: netflix
-    schema: DEV
+    database: MOVIELENS
+    schema: RAW
     tables:
       - name: r_movies
         identifier: raw_movies
@@ -16,3 +17,5 @@ sources:
         identifier: raw_links
       - name: r_ratings
         identifier: raw_ratings
+      - name: r_tags
+        identifier: raw_tags

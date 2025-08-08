@@ -2,7 +2,7 @@
     materialized='table'
 )}}
 with raw_ratings as (
-    select * from movielens.raw.raw_ratings
+    select * from {{source('netflix', 'r_ratings')}}
 )
 select 
     userid as user_id,

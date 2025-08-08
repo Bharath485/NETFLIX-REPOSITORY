@@ -4,7 +4,7 @@
     )
 }}
 with raw_tags as (
-    select * from movielens.raw.raw_tags
+    select * from {{source('netflix', 'r_tags')}}
 )
 select 
     userid as user_id,

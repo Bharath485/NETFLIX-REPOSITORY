@@ -1,5 +1,5 @@
 with raw_genome_scores AS (
-    select * from movielens.raw.raw_genome_scores
+    select * from {{source('netflix', 'r_genome_scores')}}
 )
 select 
     movieid as movie_id,
