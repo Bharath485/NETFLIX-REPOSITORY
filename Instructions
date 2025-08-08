@@ -1,5 +1,5 @@
 -- Snowflake user creation
--- Step 1: Use an admin role
+-- Step 1: Use an Securityadmin role
 USE ROLE SECURITYADMIN;
 
 -- Step 2: Create the `DBT_DEVELOPER_ROLE` role and assign it to SECURITYADMIN
