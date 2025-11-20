@@ -1,6 +1,6 @@
 {{
     config(
-        materialized = 'table',
+        materialized = 'view',
     )
 }}
 with raw_tags as (

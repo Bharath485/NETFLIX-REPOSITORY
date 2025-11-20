@@ -1,5 +1,5 @@
 {{config(
-    materialized='table'
+    materialized='view'
 )}}
 with raw_ratings as (
     select * from {{source('netflix', 'r_ratings')}}
