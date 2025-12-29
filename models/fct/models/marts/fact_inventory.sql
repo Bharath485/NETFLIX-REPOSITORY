@@ -7,7 +7,7 @@ with source_data as (
         product_code,
         on_hand_qty,
         on_order_qty
-    from {{ ref('stg_inventory') }}
+    from {{ source('staging', 'stg_inventory') }}
 ),
 
 store_lookup as (
