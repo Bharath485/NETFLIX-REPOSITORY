@@ -7,7 +7,7 @@ with source_data as (
         product_code,
         on_hand_qty,
         on_order_qty
-    from {{ source('staging', 'stg_inventory') }}
+    from {{ ref('stg_inventory') }}
 ),
 
 store_lookup as (
@@ -26,7 +26,7 @@ product_lookup as (
 
 final as (
     select
-        cast(to_char(current_date(), 'YYYYMMDD') as varchar) as date_key,
+        cast(to_char(current_date(), 'YYYYMMDD') as integer) as date_key,
         cast(s.snapshot_date as date) as dt_of_snapshot,
         coalesce(st.store_key, -1) as store_key,
         coalesce(p.product_key, -1) as product_key,
@@ -35,8 +35,10 @@ final as (
         cast(current_timestamp() as timestamp) as dt_created,
         cast(current_timestamp() as timestamp) as dt_modified
     from source_data s
-    left join store_lookup st on s.store_code = st.store_code
-    left join product_lookup p on s.product_code = p.product_code
+    left join store_lookup st
+        on s.store_code = st.store_code
+    left join product_lookup p
+        on s.product_code = p.product_code
 )
 
 select * from final
