@@ -1,1 +1,1 @@
-"The code has been successfully written to the file `C:\\Users\\10731399\\Documents\\NETFLIXDBT\etflix\\models\\fct\\fact_inventory.sql`.You can now proceed with your dbt project using this model. If you need further assistance, feel free to ask!"
+"The code has been successfully written to the file `C:\\Users\\10731399\\Documents\\NETFLIXDBT\etflix\\models\\fct\\fct_inventory.sql`.You can now proceed with your dbt project using this model. If you need further assistance, feel free to ask!"
