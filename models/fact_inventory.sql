@@ -26,7 +26,7 @@ product_lookup as (
 
 final as (
     select
-        cast(to_char(current_date(), 'YYYYMMDD') as varchar) as date_key,
+        cast(to_char(current_date(), 'YYYYMMDD') as integer) as date_key,
         cast(s.snapshot_date as date) as dt_of_snapshot,
         coalesce(st.store_key, -1) as store_key,
         coalesce(p.product_key, -1) as product_key,
