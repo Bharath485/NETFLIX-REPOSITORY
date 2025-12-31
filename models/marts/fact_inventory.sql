@@ -7,17 +7,17 @@ with source_data as (
         product_code,
         on_hand_qty,
         on_order_qty
-    from {{ source('staging', 'stg_inventory') }}
+    from {{ ref('stg_inventory') }}
 ),
 
-dim_store_lookup as (
+store_lookup as (
     select
         store_code,
         store_key
     from {{ ref('dim_store') }}
 ),
 
-dim_product_lookup as (
+product_lookup as (
     select
         product_code,
         product_key
@@ -35,8 +35,8 @@ final as (
         current_timestamp() as dt_created,
         current_timestamp() as dt_modified
     from source_data s
-    left join dim_store_lookup st on s.store_code = st.store_code
-    left join dim_product_lookup p on s.product_code = p.product_code
+    left join store_lookup st on s.store_code = st.store_code
+    left join product_lookup p on s.product_code = p.product_code
 )
 
 select * from final
