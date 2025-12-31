@@ -26,12 +26,12 @@ product_lookup as (
 
 final as (
     select
-        to_char(current_date(), 'YYYYMMDD')::int as date_key,
+        cast(to_char(current_date(), 'YYYYMMDD') as integer) as date_key,
         cast(s.snapshot_date as date) as dt_of_snapshot,
         coalesce(st.store_key, -1) as store_key,
         coalesce(p.product_key, -1) as product_key,
-        coalesce(cast(s.on_hand_qty as int), 0) as on_hand_qty,
-        coalesce(cast(s.on_order_qty as int), 0) as on_order_qty,
+        cast(coalesce(s.on_hand_qty, 0) as integer) as on_hand_qty,
+        cast(coalesce(s.on_order_qty, 0) as integer) as on_order_qty,
         current_timestamp() as dt_created,
         current_timestamp() as dt_modified
     from source_data s
