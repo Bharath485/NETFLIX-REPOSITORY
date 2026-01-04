@@ -1,0 +1,19 @@
+netflix:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: 'not needed'
+      user: 'not needed'
+      role: DBT_POC
+      database: NETFLIX_DB_DEV
+      schema: DEV
+      warehouse: POLARSLED_2
+    prod:
+      type: snowflake
+      account: 'not needed'
+      user: 'not needed'
+      role: DBT_POC
+      database: NETFLIX_DB-PROD
+      schema: PROD
+      warehouse: POLARSLED_2
