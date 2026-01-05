@@ -38,11 +38,4 @@ final as (
         on s.product_code = p.product_code
 )
 
-select
-    sale_date_key,
-    store_key,
-    product_key,
-    sale_qty,
-    dt_created,
-    dt_modified
-from final
+select * from final
