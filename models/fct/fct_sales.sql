@@ -25,12 +25,12 @@ product_lookup as (
 
 final as (
     select
-        to_char(s.sale_date, 'YYYYMMDD') as sale_date_key,
+        cast(to_char(s.sale_date, 'YYYYMMDD') as integer) as sale_date_key,
         coalesce(st.store_key, -1) as store_key,
         coalesce(p.product_key, -1) as product_key,
-        coalesce(cast(s.sale_qty as integer), 0) as sale_qty,
-        current_timestamp() as dt_created,
-        current_timestamp() as dt_modified
+        cast(coalesce(s.sale_qty, 0) as integer) as sale_qty,
+        cast(current_timestamp() as timestamp) as dt_created,
+        cast(current_timestamp() as timestamp) as dt_modified
     from source_data s
     left join store_lookup st
         on s.store_code = st.store_code
@@ -38,4 +38,11 @@ final as (
         on s.product_code = p.product_code
 )
 
-select * from final
+select
+    sale_date_key,
+    store_key,
+    product_key,
+    sale_qty,
+    dt_created,
+    dt_modified
+from final
