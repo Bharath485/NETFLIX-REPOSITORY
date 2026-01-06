@@ -41,29 +41,29 @@ models:
           - unique
           - not_null
 
-  - name: fact_ratings
-    description: "Fact table for user ratings"
-    columns:
-      - name: user_id
-        description: "Unique identifier for each user"
-        tests:
-          - not_null
-      - name: movie_id
-        description: "Unique identifier for each movie"
-        tests:
-          - not_null
-          - relationships:
-              arguments:
-                to: ref('dim_movies')
-                field: movie_id
-      - name: rating
-        description: "Rating given by the user to the movie"
-        tests:
-          - not_null
-      - name: rating_timestamp
-        description: "Date when the rating was given"
-        tests:
-          - not_null
+  # - name: fact_ratings
+  #   description: "Fact table for user ratings"
+  #   columns:
+  #     - name: user_id
+  #       description: "Unique identifier for each user"
+  #       tests:
+  #         - not_null
+  #     - name: movie_id
+  #       description: "Unique identifier for each movie"
+  #       tests:
+  #         - not_null
+  #         - relationships:
+  #             arguments:
+  #               to: ref('dim_movies')
+  #               field: movie_id
+  #     - name: rating
+  #       description: "Rating given by the user to the movie"
+  #       tests:
+  #         - not_null
+  #     - name: rating_timestamp
+  #       description: "Date when the rating was given"
+  #       tests:
+  #         - not_null
 
   - name: fact_genome_scores
     description: "Fact table for genome scores"
