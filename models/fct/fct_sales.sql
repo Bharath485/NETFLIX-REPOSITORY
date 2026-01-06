@@ -1,12 +1,12 @@
-{{ config(materialized='table') }}
+{{ config(materialized="table") }}
 
 with source_data as (
     select
         sale_date,
         store_code,
         product_code,
-        coalesce(sale_qty, 0) as sale_qty
-    from {{ ref('stg_sales') }}
+        sale_qty
+    from {{ source('staging', 'stg_sales') }}
 ),
 
 store_lookup as (
@@ -25,10 +25,10 @@ product_lookup as (
 
 final as (
     select
-        cast(to_char(s.sale_date, 'YYYYMMDD') as integer) as sale_date_key,
+        to_char(s.sale_date, 'YYYYMMDD') as sale_date_key,
         coalesce(st.store_key, -1) as store_key,
         coalesce(p.product_key, -1) as product_key,
-        cast(s.sale_qty as integer) as sale_qty,
+        coalesce(cast(s.sale_qty as integer), 0) as sale_qty,
         current_timestamp() as dt_created,
         current_timestamp() as dt_modified
     from source_data s
