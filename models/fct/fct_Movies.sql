@@ -1,1 +1,0 @@
-{'choices': [{'index': 0, 'delta': {'content': '"The code has been successfully written to the file at `C:\\\\Users\\\\10731399\\\\Documents\\\\NETFLIXDBT\\\netflix\\\\models\\\\fct\\\\fact_inventory.sql`.\n\nYou can now proceed with your dbt project using this model. If you need further assistance, feel free to ask!"', 'role': 'assistant'}, 'thread_id': 'Kn1v6HaChI7V'}]}

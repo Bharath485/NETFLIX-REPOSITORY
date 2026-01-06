@@ -1,4 +1,6 @@
+
 version: 2
+
 models: 
   - name: dim_movies
     description: "Dimension table for movies"
@@ -16,7 +18,7 @@ models:
         description: "Array of genres associated with the movie"
       - name: genres
         description: "Pipe-separated string of genres"
-  
+
   - name: dim_genome_tags
     description: "Dimension table for genome tags"
     columns:
@@ -38,6 +40,7 @@ models:
         tests:
           - unique
           - not_null
+
   - name: fact_ratings
     description: "Fact table for user ratings"
     columns:
@@ -49,9 +52,10 @@ models:
         description: "Unique identifier for each movie"
         tests:
           - not_null
-          - relationship:
-              to: ref('dim_movies')
-              field: movie_id 
+          - relationships:
+              arguments:
+                to: ref('dim_movies')
+                field: movie_id
       - name: rating
         description: "Rating given by the user to the movie"
         tests:
@@ -60,18 +64,26 @@ models:
         description: "Date when the rating was given"
         tests:
           - not_null
-  
+
   - name: fact_genome_scores
     description: "Fact table for genome scores"
     columns:
       - name: movie_id
-        description: "Forigen key to fim_movies"
+        description: "Foreign key to dim_movies"
         tests:
           - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_movies')
+                field: movie_id
       - name: tag_id
         description: "Unique identifier for each genome tag"
         tests:
           - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_genome_tags')
+                field: tag_id
       - name: relevance_score
         description: "Relevance score of the genome tag for the movie"
         tests:
